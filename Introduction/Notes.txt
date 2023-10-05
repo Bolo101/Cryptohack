@@ -1,0 +1,9 @@
+Convert ASCII to text
+chr(Ascii_code)
+
+Convert text to ASCII code
+chr("caractere")
+
+Convert hex to text
+bytes.fromhex('string')
+
