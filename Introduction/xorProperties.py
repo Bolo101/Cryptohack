@@ -3,36 +3,14 @@ item1 = "a6c8b6733c9b22de7bc0253266a3867df55acde8635e19c73313"
 item12 = "37dcb292030faa90d07eec17e3b1c6d8daf94c35d4c9191a5e1e"
 item23 = "c1545756687e7573db23aa1c3452a098b71a7fbf0fddddde5fc1"
 
-f1 = [car for car in bytes.fromhex(item1)]
-f23 = [car for car in bytes.fromhex(item23)]
-ff123 = [car for car in bytes.fromhex(allitems)]
+f1 = [car for car in bytes.fromhex(item1)] #create a list containing all the bytes collection from the hexadecimal input representing Key1 
+f23 = [car for car in bytes.fromhex(item23)] #create a list containing all the bytes collection from the hexadecimal input representing Key2 ^ Key3
+ff123 = [car for car in bytes.fromhex(allitems)] #create a list containing all the bytes collection from the hexadecimal input representing Flag^Key1^Key2^Key3
 
-flag_h1 = [allitem ^ k1c for (allitem,k1c) in zip(ff123,f23)]
+flag_h1 = [allitem ^ k1c for (allitem,k1c) in zip(ff123,f23)] #We xor each bytes from the ff123 collection by the ones in the f1 collection to remove the Key1 (Key1^Key1 = 0)
+flagg = [flag_h1 ^ f1 for (flag_h1,f1) in zip(flag_h1,f1)] # We xor each bytes from the ff123 collection by the ones in the f23 collection to remove the Key2^Key3
 
-flagg = [flag_h1 ^ f1 for (flag_h1,f1) in zip(flag_h1,f1)]
-
-flagfinal = "".join(chr(o) for o in flagg)
+flagfinal = "".join(chr(o) for o in flagg) #Convert all bytes into an ASCII character
 print(flagfinal)
-print(ff123)
 
 
-
-"""
-k1 = "a6c8b6733c9b22de7bc0253266a3867df55acde8635e19c73313"
-k2_k1 = "37dcb292030faa90d07eec17e3b1c6d8daf94c35d4c9191a5e1e"
-k2_k3 = "c1545756687e7573db23aa1c3452a098b71a7fbf0fddddde5fc1"
-flag_k1_k3_k2 = "04ee9855208a2cd59091d04767ae47963170d1660df7f56f5faf"
-
-k1_ord = [o for o in bytes.fromhex(k1)]
-k2_k3_ord = [o for o in bytes.fromhex(k2_k3)]
-flag_k1_k3_k2_ord = [o for o in bytes.fromhex(flag_k1_k3_k2)]
-
-flag_k1_ord = [
-    o_f132 ^ o23 for (o_f132, o23) in zip(flag_k1_k3_k2_ord, k2_k3_ord)
-]
-flag_ord = [o_f1 ^ o1 for (o_f1, o1) in zip(flag_k1_ord, k1_ord)]
-flag = "".join(chr(o) for o in flag_ord)
-
-print("Flag:")
-print(flag)
-"""
