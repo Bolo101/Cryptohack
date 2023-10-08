@@ -4,10 +4,10 @@ def Euclide():
         print("Format is: python3 Euclide Algorithm number1 number2")
         sys.exit()
     try:
-        a,b,r = int(sys.argv[1]),int(sys.argv[2]),int(sys.argv[2])
-        while r != 0:
-            a,b,r = b,r,a%b
-        return b
+        a,b = int(sys.argv[1]),int(sys.argv[2])
+        while b != 0:
+            a,b = b,a%b
+        return a
     except TypeError:
         print("Use valid integer inputs")
         sys.exit()
