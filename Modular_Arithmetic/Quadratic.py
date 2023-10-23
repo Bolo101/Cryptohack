@@ -3,20 +3,25 @@ Basic brute forcing quadratic residues implement
 x is called a quadratric residues if it solves a**2 = x [p]
 """
 import sys
-def quadratic(square):
-    for i in range(square):
-        if i*i == square:
-            print(f"{i} is the square root of {square}")
-            return True
-    return False    
+from math import sqrt
+def quadratic(square,p):
+    for i in range(p):
+        if (square - i) % p == False:
+            quadri = i
+            break
+    a1 = sqrt(quadri)
+    a2 = - sqrt(quadri)
+    
 
 def main():
     text = int(input("Enter a signed integer:"))
-    result = quadratic(text)
+    modulo = int(input("Enter the modulo:"))
+    result = quadratic(text,modulo)
     if result:
         print("Done")
+        print(result)
     else:
-        print("Cow")
+        print("No result")
         sys.exit()
 
 if __name__ =='__main__':
