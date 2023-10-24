@@ -3,7 +3,9 @@ import sys
 def quadratic(square, p):
     for i in range(p):
         if (i * i) % p == square:
+            print(i)
             return i
+    return None
 
 def main():
     text = int(input("Enter a signed integer: "))
