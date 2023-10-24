@@ -3,7 +3,6 @@ import sys
 def quadratic(square, p):
     for i in range(p):
         if (i * i) % p == square:
-            print(i)
             return i
     return None
 
